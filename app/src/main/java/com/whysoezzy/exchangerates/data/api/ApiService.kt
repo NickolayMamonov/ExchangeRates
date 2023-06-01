@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("latest.js")
+    @GET("daily_json.js")
     suspend fun getLatestCurrencies(
     ): ServerResponseDto
 

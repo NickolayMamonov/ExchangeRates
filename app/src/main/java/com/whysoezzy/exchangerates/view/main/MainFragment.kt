@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
             when (datastate) {
                 is MainScreenState.Content -> {
                     val recyclerView = binding.recycleview
-                    mainAdapter = MainAdapter(datastate.rates) {
+                    mainAdapter = MainAdapter(datastate.valute) {
                         findNavController().navigate(R.id.action_mainFragment_to_conversionFragment)
                     }
                     recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
                 is MainScreenState.Error -> {
 
                 }
-                MainScreenState.Loading -> {
+                is MainScreenState.Loading -> {
 
                 }
             }

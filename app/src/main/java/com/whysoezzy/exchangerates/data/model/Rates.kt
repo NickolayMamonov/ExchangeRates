@@ -1,6 +1,8 @@
 package com.whysoezzy.exchangerates.data.model
 
+
 data class Rates(
-    val name: String,
+    val id: String,
+    val charCode : String,
     val value: Double
 )
