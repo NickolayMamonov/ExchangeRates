@@ -9,16 +9,29 @@
         android:id="@+id/mainFragment"
         android:name="com.whysoezzy.exchangerates.view.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_conversionFragment"
-            app:destination="@id/conversionFragment" />
+            app:destination="@id/conversionFragment">
+            <argument
+                android:name="charCode"
+                app:argType="string" />
+            <argument
+                android:name="value"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/conversionFragment"
         android:name="com.whysoezzy.exchangerates.view.conversion.ConversionFragment"
         android:label="fragment_conversion"
-        tools:layout="@layout/fragment_conversion" >
+        tools:layout="@layout/fragment_conversion">
+        <argument
+            android:name="charCode"
+            app:argType="string" />
+        <argument
+            android:name="value"
+            app:argType="string" />
         <action
             android:id="@+id/action_conversionFragment_to_mainFragment"
             app:destination="@id/mainFragment" />

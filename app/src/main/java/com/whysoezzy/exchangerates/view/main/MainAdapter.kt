@@ -10,7 +10,7 @@ import com.whysoezzy.exchangerates.data.model.Rates
 
 class MainAdapter(
     private var mList: List<Rates>,
-    private val mItemClickListener: (String) -> Unit
+    private val mItemClickListener: (charCode: String, value: String) -> Unit
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
 
@@ -22,11 +22,12 @@ class MainAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.setIsRecyclable(false)
         val currency = mList[position]
         holder.currency.text = currency.charCode
         holder.coefficient.text = currency.value.toString()
         holder.itemView.setOnClickListener {
-            mList[position].id.let { id -> mItemClickListener(id) }
+            mItemClickListener.invoke(mList[position].charCode, mList[position].value.toString())
         }
     }
 

@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.whysoezzy.exchangerates.R
 import com.whysoezzy.exchangerates.databinding.FragmentMainBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -36,8 +35,12 @@ class MainFragment : Fragment() {
             when (datastate) {
                 is MainScreenState.Content -> {
                     val recyclerView = binding.recycleview
-                    mainAdapter = MainAdapter(datastate.valute) {
-                        findNavController().navigate(R.id.action_mainFragment_to_conversionFragment)
+                    mainAdapter = MainAdapter(datastate.valute) { charCode, value ->
+                        val action = MainFragmentDirections.actionMainFragmentToConversionFragment(
+                            charCode,
+                            value
+                        )
+                        findNavController().navigate(action)
                     }
                     recyclerView.layoutManager = LinearLayoutManager(requireContext())
                     recyclerView.adapter = mainAdapter

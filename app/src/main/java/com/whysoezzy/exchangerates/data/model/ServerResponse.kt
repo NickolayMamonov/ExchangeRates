@@ -1,6 +1,6 @@
 package com.whysoezzy.exchangerates.data.model
 
-import java.util.Date
+import java.util.*
 
 data class ServerResponse(
     val date: Date,
