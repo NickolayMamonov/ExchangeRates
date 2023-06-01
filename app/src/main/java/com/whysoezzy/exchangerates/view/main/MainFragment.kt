@@ -1,10 +1,10 @@
 package com.whysoezzy.exchangerates.view.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -33,19 +33,19 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         viewModel.dataState.onEach { datastate ->
-            when(datastate){
+            when (datastate) {
                 is MainScreenState.Content -> {
+                    val recyclerView = binding.recycleview
                     mainAdapter = MainAdapter(datastate.rates) {
                         findNavController().navigate(R.id.action_mainFragment_to_conversionFragment)
                     }
-                    val recyclerView = binding.recycleview
                     recyclerView.layoutManager = LinearLayoutManager(requireContext())
                     recyclerView.adapter = mainAdapter
                 }
                 is MainScreenState.Error -> {
 
                 }
-                MainScreenState.Loading ->{
+                MainScreenState.Loading -> {
 
                 }
             }

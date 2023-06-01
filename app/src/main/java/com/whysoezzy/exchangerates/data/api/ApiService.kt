@@ -1,14 +1,16 @@
 package com.whysoezzy.exchangerates.data.api
 
 import com.whysoezzy.exchangerates.data.model.Rates
+import com.whysoezzy.exchangerates.data.model.ServerResponse
+import com.whysoezzy.exchangerates.data.model.ServerResponseDto
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("daily_json.js")
+    @GET("latest.js")
     suspend fun getLatestCurrencies(
-    ): List<Rates>
+    ): ServerResponseDto
 
 
     companion object {

@@ -22,11 +22,11 @@ class MainAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currency = mList[position]
-        holder.currency.text = currency.CharCode
-        holder.coefficient.text = currency.Value.toString()
-        holder.itemView.setOnClickListener {
-            mList[position].id.let { id -> mItemClickListener(id) }
-        }
+        holder.currency.text = currency.name
+        holder.coefficient.text = currency.value.toString()
+//        holder.itemView.setOnClickListener {
+//            mList[position].id.let { id -> mItemClickListener(id) }
+//        }
     }
 
     override fun getItemCount(): Int {

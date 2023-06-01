@@ -1,6 +1,8 @@
 package com.whysoezzy.exchangerates.data.model
 
-data class ServerResponse(
+import com.google.gson.annotations.SerializedName
+
+data class ServerResponseDto (
     val disclaimer: String,
     val date: String,
     val timestamp: Int,

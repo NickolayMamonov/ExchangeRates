@@ -1,6 +1,9 @@
 package com.whysoezzy.exchangerates.data.model
 
-data class Rates(
+class ServerResponseVo (
     val name: String,
     val value: Double
-)
+
+    )
+
+
