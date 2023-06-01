@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.whysoezzy.exchangerates.view.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_conversionFragment"
+            app:destination="@id/conversionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/conversionFragment"
+        android:name="com.whysoezzy.exchangerates.view.conversion.ConversionFragment"
+        android:label="fragment_conversion"
+        tools:layout="@layout/fragment_conversion" >
+        <action
+            android:id="@+id/action_conversionFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>
