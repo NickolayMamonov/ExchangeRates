@@ -3,16 +3,18 @@ package com.whysoezzy.exchangerates.view.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.whysoezzy.exchangerates.R
 import com.whysoezzy.exchangerates.data.model.Rates
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainAdapter(
     private var mList: List<Rates>,
     private val mItemClickListener: (charCode: String, value: String) -> Unit
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -41,5 +43,6 @@ class MainAdapter(
         val currency: TextView = itemView.findViewById(R.id.currency)
 
     }
+
 
 }

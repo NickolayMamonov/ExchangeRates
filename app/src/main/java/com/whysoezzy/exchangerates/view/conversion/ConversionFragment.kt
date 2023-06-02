@@ -17,6 +17,7 @@ import com.whysoezzy.exchangerates.view.main.MainAdapter
 import com.whysoezzy.exchangerates.view.main.MainFragmentDirections
 import com.whysoezzy.exchangerates.view.main.MainScreenState
 import com.whysoezzy.exchangerates.view.main.MainViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
 
 class ConversionFragment : Fragment() {
     private val args: ConversionFragmentArgs by navArgs()
-
+    private lateinit var viewModel: ConversionViewModel
     private lateinit var binding: FragmentConversionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,22 +38,23 @@ class ConversionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentConversionBinding.inflate(inflater)
+        viewModel = ViewModelProvider(this).get(ConversionViewModel::class.java)
+        viewModel.init(args.charCode, args.value.toDouble())
 
-        binding.conversionValute
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             val name: String = args.charCode
-            var valValute = args.value.toDouble()
-            binding.conversionText.text = "1 RUB = ${(1*valValute).toInt()} ${name}"
-            binding.conversionValute.text = "0 $name"
+            val valValute = args.value.toDouble()
+            binding.conversionText.text = "1 RUB = ${viewModel.value.value} ${viewModel.name.value}"
+            binding.conversionValute.text = "0 ${viewModel.name.value}"
 
             binding.conversionRub.addTextChangedListener {
                 val text = binding.conversionRub.text.toString()
                 if(text.isNotEmpty()){
                     val value = text.toInt()
-                    val result = value * valValute
-                    binding.conversionValute.text = "${result.toInt()} $name"
+
+                    binding.conversionValute.text = "${viewModel.convertRubToValute(value)} ${viewModel.name.value}"
                 }else{
-                    binding.conversionValute.text = "0 $name"
+                    binding.conversionValute.text = "0 ${viewModel.name.value}"
                 }
 
             }
