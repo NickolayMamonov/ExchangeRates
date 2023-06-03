@@ -7,14 +7,16 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.whysoezzy.exchangerates.view.main.MainFragment"
+        android:name="com.whysoezzy.exchangerates.presentation.main.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_conversionFragment"
-            app:destination="@id/conversionFragment">
+            app:destination="@id/conversionFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true">
             <argument
-                android:name="charCode"
+                android:name="name"
                 app:argType="string" />
             <argument
                 android:name="value"
@@ -23,11 +25,11 @@
     </fragment>
     <fragment
         android:id="@+id/conversionFragment"
-        android:name="com.whysoezzy.exchangerates.view.conversion.ConversionFragment"
+        android:name="com.whysoezzy.exchangerates.presentation.conversion.view.ConversionFragment"
         android:label="fragment_conversion"
         tools:layout="@layout/fragment_conversion">
         <argument
-            android:name="charCode"
+            android:name="name"
             app:argType="string" />
         <argument
             android:name="value"

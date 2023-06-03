@@ -1,22 +1,10 @@
 package com.whysoezzy.exchangerates.data.model
 
-import com.google.gson.annotations.SerializedName
-import java.util.*
-
 data class ServerResponseDto(
-    @SerializedName("Date")
-    val date: Date,
-
-    @SerializedName("PreviousDate")
-    val previousDate: Date,
-
-    @SerializedName("PreviousURL")
-    val previousURL: String,
-
-    @SerializedName("Timestamp")
-    val timestamp: Date,
-
-    @SerializedName("Valute")
-    val valute: Map<String, RatesDto>
+    val disclaimer: String,
+    val date: String,
+    val timestamp: Int,
+    val base: String,
+    val rates: Map<String, Double>
 )
 
