@@ -34,6 +34,10 @@ class MainFragment : Fragment() {
         vm.dataState.onEach { datastate ->
             when (datastate) {
                 is MainScreenState.Content -> {
+                    val error = binding.errorText
+                    val progressbar = binding.progressBar
+                    error.visibility = View.INVISIBLE
+                    progressbar.visibility = View.INVISIBLE
                     val recyclerView = binding.recycleview
                     mainAdapter = MainAdapter(datastate.rates) { name, value ->
                         val action = MainFragmentDirections.actionMainFragmentToConversionFragment(
@@ -46,13 +50,18 @@ class MainFragment : Fragment() {
                     recyclerView.adapter = mainAdapter
                 }
                 is MainScreenState.Error -> {
-
+                    val error = binding.errorText
+                    val progressbar = binding.progressBar
+                    error.visibility = View.VISIBLE
+                    progressbar.visibility = View.INVISIBLE
                 }
                 is MainScreenState.Loading -> {
-
+                    val error = binding.errorText
+                    val progressbar = binding.progressBar
+                    error.visibility = View.INVISIBLE
+                    progressbar.visibility = View.VISIBLE
                 }
             }
-
         }.launchIn(lifecycleScope)
         return binding.root
     }

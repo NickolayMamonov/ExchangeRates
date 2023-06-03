@@ -18,6 +18,7 @@ import org.koin.core.parameter.parametersOf
 
 
 class ConversionFragment : Fragment() {
+    private lateinit var binding: FragmentConversionBinding
     private val args: ConversionFragmentArgs by navArgs()
     private val vm: ConversionViewModel by viewModel {
         parametersOf(
@@ -25,7 +26,6 @@ class ConversionFragment : Fragment() {
             args.value.toDouble()
         )
     }
-    private lateinit var binding: FragmentConversionBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -41,6 +41,7 @@ class ConversionFragment : Fragment() {
             val text = binding.conversionRub.text.toString()
             text.toDoubleOrNull()?.let { it1 -> vm.convertRubToValute(it1) }
         }
+
         return binding.root
     }
 
